@@ -25,13 +25,13 @@
   "homepage": "https://github.com/storybooks/storybook/tree/master/app/react-native",
   "peerDependencies": {
     "react": "*",
-    "react-native": "0.27.0 - 0.43.x"
+    "react-native": ">=0.27.0"
   },
   "devDependencies": {
     "babel-cli": "^6.24.1",
     "react": "^15.5.4",
     "react-dom": "^15.5.4",
-    "react-native": "^0.43.3"
+    "react-native": "^0.44.2"
   },
   "dependencies": {
     "@storybook/addon-actions": "^3.0.0",

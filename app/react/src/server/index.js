@@ -5,6 +5,8 @@ import favicon from 'serve-favicon';
 import program from 'commander';
 import path from 'path';
 import fs from 'fs';
+import ws from 'ws';
+import http from 'http';
 import chalk from 'chalk';
 import shelljs from 'shelljs';
 import storybook from './middleware';
@@ -77,7 +79,7 @@ if (program.host) {
 }
 
 const app = express();
-let server = app;
+let server = http.createServer(app);
 
 if (program.https) {
   if (!program.sslCert) {
@@ -145,5 +147,14 @@ server.listen(...listenAddr, error => {
   } else {
     const address = `http://${program.host || 'localhost'}:${program.port}/`;
     logger.info(`\Storybook started on => ${chalk.cyan(address)}\n`);
+
+    const wsServer = ws.Server({ server })
+    wsServer.on('connection', socket => {
+      socket.on('message', data => {
+        wsServer.clients.forEach(client => {
+          client.send(data);
+        });
+      });
+    });
   }
 });

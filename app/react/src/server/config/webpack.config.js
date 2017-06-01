@@ -39,6 +39,9 @@ export default function() {
       ],
     },
     resolve: {
+      alias: {
+        'react-native': 'react-native-web'
+      },
       // Since we ship with json-loader always, it's better to move extensions to here
       // from the default config.
       extensions: ['.js', '.json', '.jsx'],
