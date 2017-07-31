@@ -8,6 +8,8 @@ export default {
   },
   headerText: {
     fontSize: 16,
+    flex: 1,
+    alignSelf: 'stretch',
   },
   headerTextSelected: {
     fontWeight: 'bold',
